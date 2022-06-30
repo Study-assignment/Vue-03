@@ -27,7 +27,7 @@
             <!-- 如果价格超过100，就有red这个类 -->
             <td :class="{red:item.price>100}">{{item.price}}</td>
             <td>{{item.time}}</td>
-            <td><a href="#" >删除</a></td>
+            <td><a href="#" @click.prevent="remove(item.id)">删除</a></td>
           </tr>
           <!-- <tr style="background-color: #EEE">
               <td>统计:</td>
@@ -69,7 +69,7 @@
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <!-- 阻止表单提交 -->
-        <button class="btn btn-primary" @click.prevent="add">添加资产</button>
+        <button class="btn btn-primary" @click.prevent="add()">添加资产</button>
       </form>
     </div>
   </div>
@@ -98,13 +98,17 @@ export default {
     add(){
       if(!this.name||!this.price) return alert('内容不能为空')
       this.list.push({
-        id:this.list[this.list.length-1].id+1,
+        id: this.list[0]? this.list[this.list.length-1].id+1:100,
         name:this.name,
         price:this.price,
         time:new Date()
       })
       this.name=''
       this.price=''
+    },
+    remove(id){
+      const index =  this.list.findIndex(item=> item.id == id)
+      this.list.splice(index,1)
     }
   }
 

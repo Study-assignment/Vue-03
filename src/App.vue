@@ -1,30 +1,41 @@
 <template>
-    <div>
-      <span :class="{avatar:isAvatar}">我是通过动态class修改类名添加的颜色</span>
-      <button @click="fn"> 点击切换类名</button>
-      <br>
-      <span :style="{background:'yellow',color:'skyblue'}">是通过style修改类名添加的颜色</span>
-
-    </div>
+  <div>
+    <ul>
+      <li :class="{active:isActive ==index}" v-for="(item,index) in navs" :key="item" @click="isActive = index">{{item}}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
   data(){
     return{
-      isAvatar:true
+      navs: ['大学起点', '高中起点', '初中起点', '小学起点'],
+      isActive:0
     }
   },
-  methods:{ 
-    fn(){
-      this.isAvatar = !this.isAvatar
-    }
-  }
 }
 </script>
 
 <style>
-  .avatar{
-    color:red;
+ ul {
+    list-style: none;
+    border-radius: 10px;
+    width: 400px;
+    overflow: hidden;
+    padding: 0;
+  }
+  ul li {
+    float: left;
+    width: 100px;
+    height: 40px;
+    background-color: #ccc;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+  }
+  li.active {
+    background-color: blue;
   }
 </style>

@@ -1,15 +1,10 @@
 <template>
     <div>
-      <!-- 该方法和innerHtml和innerText类似，会覆盖标签内原本内容 -->
-      <div v-text="text1" v-show="isShow"></div>
-      <button @click="isShow = !isShow">点击切换show</button>
-
-      
-      <div v-text="html1" v-if="isIf"></div>
-      <button @click="isIf = !isIf">点击切换if</button>
-
-      <!-- v-show是控制display：none -->
-      <!-- v-if是直接是否有该dom -->
+      <div v-for="item in arr" :key="item">{{item}}</div>
+      <ul>
+        <li v-for="item in stuArr" :key="item.id">{{item.name}}--{{item.sex}}--{{item.hobby}}</li>
+      </ul>
+      <div v-for="item in count" :key="item">{{item}}</div>
     </div>
 </template>
 
@@ -17,10 +12,27 @@
 export default {
   data(){
     return{
-      text1 :"醉里挑灯看剑",
-      html1 :"梦回吹角连营",
-      isShow:true,
-      isIf:true
+      arr: ["小明", "小欢欢", "大黄"],
+      stuArr: [
+        {
+          id: 1001,
+          name: "孙悟空",
+          sex: "男",
+          hobby: "吃桃子",
+        },
+        {
+          id: 1002,
+          name: "猪八戒",
+          sex: "男",
+          hobby: "背媳妇",
+        },
+      ],
+      tObj: {
+        name: "小黑",
+        age: 18,
+        class: "1期",
+      },
+      count: 10,
     }
   }
 }

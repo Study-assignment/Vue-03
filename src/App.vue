@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <ul>
-      <li v-for="item in myArr" :key="item">{{item}}</li>
+      <li v-for="(item,index) in arr" :key="index">
+        {{item}}
+        <button @click="remove(index)">删除</button>
+      </li>
     </ul>
-    <button @click="fn">走一走</button>
+    <button @click="add">生成</button>
   </div>
 </template>
 
@@ -11,13 +14,16 @@
 export default {
   data() {
     return {
-      myArr: ["帅哥", "美女", "程序猿"],
+      arr:[1,2,3]
     };
   },
   methods: {
-      fn(){
-        this.myArr.push(this.myArr.shift())
-      }
+    add(){
+      this.arr.push(Math.floor(Math.random()*10))
+    },
+    remove(index){
+      this.arr.splice(index,1)
+    }
   },
 };
 </script>

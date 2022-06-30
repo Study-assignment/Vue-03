@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <p>循环数组</p>
+    <ul>
+      <!-- item表示数组每个元素的值，index表示数组的索引 -->
+      <li v-for="(item, index) in arr" :key="item">{{ item }},{{ index }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      arr: ['小明', '小欢欢', '大黄'],
+      stuArr: [
+        {
+          id: 1001,
+          name: '孙悟空',
+          sex: '男',
+          hobby: '吃桃子',
+        },
+        {
+          id: 1002,
+          name: '猪八戒',
+          sex: '男',
+          hobby: '背媳妇',
+        },
+      ],
+      tObj: {
+        name: '小黑',
+        age: 18,
+        class: '1期',
+      },
+      count: 10,
+    };
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>

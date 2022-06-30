@@ -1,10 +1,7 @@
 <template>
     <div>
       <div v-for="item in arr" :key="item">{{item}}</div>
-      <ul>
-        <li v-for="item in stuArr" :key="item.id">{{item.name}}--{{item.sex}}--{{item.hobby}}</li>
-      </ul>
-      <div v-for="item in count" :key="item">{{item}}</div>
+      <button @click="fn">点击</button>
     </div>
 </template>
 
@@ -13,27 +10,16 @@ export default {
   data(){
     return{
       arr: ["小明", "小欢欢", "大黄"],
-      stuArr: [
-        {
-          id: 1001,
-          name: "孙悟空",
-          sex: "男",
-          hobby: "吃桃子",
-        },
-        {
-          id: 1002,
-          name: "猪八戒",
-          sex: "男",
-          hobby: "背媳妇",
-        },
-      ],
-      tObj: {
-        name: "小黑",
-        age: 18,
-        class: "1期",
-      },
-      count: 10,
     }
+  },
+  methods:{
+         fn(){
+          //该方法无法动态渲染
+        // this.arr[3] = '小西施'
+
+        //需要调用$set方法或者能改变原素组方法的方法
+        this.$set(this.arr,3,'小西施')
+      }
   }
 }
 </script>

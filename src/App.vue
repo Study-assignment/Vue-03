@@ -1,7 +1,10 @@
 <template>
     <div>
-      <div v-for="item in arr" :key="item">{{item}}</div>
-      <button @click="fn">点击</button>
+      <span :class="{avatar:isAvatar}">我是通过动态class修改类名添加的颜色</span>
+      <button @click="fn"> 点击切换类名</button>
+      <br>
+      <span :style="{background:'yellow',color:'skyblue'}">是通过style修改类名添加的颜色</span>
+
     </div>
 </template>
 
@@ -9,21 +12,19 @@
 export default {
   data(){
     return{
-      arr: ["小明", "小欢欢", "大黄"],
+      isAvatar:true
     }
   },
-  methods:{
-         fn(){
-          //该方法无法动态渲染
-        // this.arr[3] = '小西施'
-
-        //需要调用$set方法或者能改变原素组方法的方法
-        this.$set(this.arr,3,'小西施')
-      }
+  methods:{ 
+    fn(){
+      this.isAvatar = !this.isAvatar
+    }
   }
 }
 </script>
 
 <style>
-
+  .avatar{
+    color:red;
+  }
 </style>

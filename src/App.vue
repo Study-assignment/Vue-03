@@ -52,6 +52,7 @@
               type="text"
               class="form-control"
               placeholder="资产名称"
+              v-model.trim="name"
             />
           </div>
         </div>
@@ -59,15 +60,16 @@
         <div class="form-group">
           <div class="input-group">
             <input
-              type="text"
+              type="number"
               class="form-control"
               placeholder="价格"
+              v-model.trim="price"
             />
           </div>
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <!-- 阻止表单提交 -->
-        <button class="btn btn-primary">添加资产</button>
+        <button class="btn btn-primary" @click.prevent="add">添加资产</button>
       </form>
     </div>
   </div>
@@ -82,6 +84,8 @@
 export default {
   data() {
     return {
+      name:'',
+      price:'',
       list: [
         { id: 100, name: "外套", price: 199, time: new Date('2010-08-12')},
         { id: 101, name: "裤子", price: 34, time: new Date('2013-09-01') },
@@ -90,6 +94,19 @@ export default {
       ],
     };
   },
+  methods:{
+    add(){
+      if(!this.name||!this.price) return alert('内容不能为空')
+      this.list.push({
+        id:this.list[this.list.length-1].id+1,
+        name:this.name,
+        price:this.price,
+        time:new Date()
+      })
+      this.name=''
+      this.price=''
+    }
+  }
 
 };
 </script>

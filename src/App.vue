@@ -1,10 +1,22 @@
 <template>
   <div>
-    <p>循环数组</p>
+    <p>请选择你要购买的书籍</p>
     <ul>
-      <!-- item表示数组每个元素的值，index表示数组的索引 -->
-      <li v-for="(item, index) in arr" :key="item">{{ item }},{{ index }}</li>
+      <li v-for="item in arr" :key="item.name">
+        {{ item.name }}
+        <button @click="buyFn">买书</button>
+      </li>
     </ul>
+    <table border="1px" width="500" cellspacing="0">
+      <tr v-for="(item, index) in arr" :key="index">
+        <th>{{ index }}</th>
+        <th>{{ item.name }}</th>
+        <th>{{ item.price }}</th>
+        <th>{{ count }}</th>
+        <th>{{ sum }}</th>
+      </tr>
+    </table>
+    <p>总价格为:</p>
   </div>
 </template>
 
@@ -12,30 +24,36 @@
 export default {
   data() {
     return {
-      arr: ['小明', '小欢欢', '大黄'],
-      stuArr: [
+      arr: [
         {
-          id: 1001,
-          name: '孙悟空',
-          sex: '男',
-          hobby: '吃桃子',
+          name: '水浒传',
+          price: 107,
+          count: 0,
         },
         {
-          id: 1002,
-          name: '猪八戒',
-          sex: '男',
-          hobby: '背媳妇',
+          name: '西游记',
+          price: 192,
+          count: 0,
+        },
+        {
+          name: '三国演义',
+          price: 219,
+          count: 0,
+        },
+        {
+          name: '红楼梦',
+          price: 178,
+          count: 0,
         },
       ],
-      tObj: {
-        name: '小黑',
-        age: 18,
-        class: '1期',
-      },
-      count: 10,
+      count: 0,
+      sum: 0,
     };
+  },
+  methods: {
+    buyFn() {
+      
+    },
   },
 };
 </script>
-
-<style></style>

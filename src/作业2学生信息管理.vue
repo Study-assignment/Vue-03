@@ -2,11 +2,11 @@
   <div id="app">
     <div>
       <span>姓名:</span>
-      <input type="text" v-model.trim="name" />
+      <input type="text" placeholder="请输入姓名" v-model.trim="name" />
     </div>
     <div>
       <span>年龄:</span>
-      <input type="number" v-model.trim="age" />
+      <input type="number" placeholder="请输入年龄" v-model.trim="age" />
     </div>
     <div>
       <span>性别:</span>

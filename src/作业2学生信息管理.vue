@@ -11,12 +11,12 @@
     <div>
       <span>性别:</span>
       <select v-model="sex">
-        <option value="男">男</option>
-        <option value="女">女</option>
+        <option value="1">男</option>
+        <option value="0">女</option>
       </select>
     </div>
     <div>
-      <button @click="addFn">添加/修改</button>
+      <button @click="addFn">{{ isFlag ? '添加' : '修改' }}</button>
     </div>
     <div>
       <table>
@@ -31,7 +31,7 @@
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.age }}</td>
-          <td>{{ item.sex }}</td>
+          <td>{{ { 1: '男', 0: '女' }[item.sex] }}</td>
           <td>
             <button @click="del(item.id)">删除</button>
             <button @click="edit(item)">编辑</button>
@@ -51,20 +51,20 @@ export default {
       sex: '',
       id: '',
       list: [
-        { id: 1, name: 'Tom2', age: 25, sex: '女' },
-        { id: 2, name: 'Jone', age: 21, sex: '女' },
-        { id: 3, name: '小李', age: 18, sex: '男' },
+        { id: 1, name: 'Tom2', age: 25, sex: 0 },
+        { id: 2, name: 'Jone', age: 21, sex: 0 },
+        { id: 3, name: '小李', age: 18, sex: 1 },
       ],
     }
   },
   methods: {
     addFn() {
-      if (this.isFlag && this.list.some((item) => item.name == this.name))
-        return alert('名字重复')
       if (this.isFlag) {
         if (!this.name || !this.age || !this.sex)
           return alert('有值才能增加新数据')
-        const id = this.list.length + 1
+
+        const id = this.list[0] ? this.list[this.list.length - 1].id + 1 : 1
+
         this.list.push({ id, name: this.name, age: this.age, sex: this.sex })
         this.name = ''
         this.sex = ''
